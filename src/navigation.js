@@ -18,7 +18,8 @@ export const headerData = {
   actions: [{
     text: 'Start Syncing', variant: "primary",
     icon: 'tabler:calendar-repeat',
-    href: getPermalink("/sign-up"), target: '_blank'
+    href: getPermalink("/sign-up"),
+    // target: '_blank'
   }],
 };
 
