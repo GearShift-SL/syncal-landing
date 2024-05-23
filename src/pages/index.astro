@@ -10,8 +10,12 @@ import Stats from '~/components/widgets/Stats.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Brands from '~/components/widgets/Brands.astro';
+import Button from '~/components/ui/Button.astro';
 
-import { YouTube } from 'astro-embed';
+import syncalAnimation from "~/assets/images/SynCal_animation.svg?raw"
+
+// Import getpermalink
+import { getPermalink} from '~/utils/permalinks';
 
 const metadata = {
   title: 'Startup Landing Page',
@@ -19,55 +23,54 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
 
   <Hero
-    tagline="Startup Web Demo"
     actions={[
       {
         variant: 'primary',
-        target: '_blank',
-        text: 'Get templates',
-        href: 'https://github.com/onwidget/astrowind',
-        icon: 'tabler:download',
+        text: 'Start Syncing',
+        href: getPermalink('/sign-up'),
+        icon: 'tabler:calendar-repeat',
       },
       { text: 'Learn more', href: '#features' },
     ]}
   >
     <Fragment slot="title">
-      Improve <span class="hidden sm:inline">the online presence of</span> your <span
-        class="text-accent dark:text-white highlight">Startup</span
-      > with Astrowind templates
+      Syncronize your <span class="hidden sm:inline">Google and Outlook</span>  <span
+        class="text-accent dark:text-white highlight">calendars</span
+      > with ease.
     </Fragment>
 
     <Fragment slot="subtitle">
-      Step into the spotlight with <span class="font-semibold">Astrowind</span> templates, your pathway to fortifying your
-      startup's digital footprint, fostering credibility, and expanding your reach.
+      SynCal is a powerful tool that allows you to sync your Google and Outlook calendars in a few simple steps. <span class="font-semibold">Say goodbye to double bookings and missed appointments</span> with our seamless calendar integration.
     </Fragment>
 
     <Fragment slot="image">
-      <YouTube id="gxBkghlglTg" title="Astro just Launched.... Could it be the ultimate web framework?" />
+      <!-- <YouTube id="gxBkghlglTg" title="Astro just Launched.... Could it be the ultimate web framework?" />
       <style is:inline>
         lite-youtube {
           margin: 0 auto;
           max-width: 100%;
         }
-      </style>
+      </style> -->
+      <Fragment set:html={syncalAnimation} />
     </Fragment>
   </Hero>
 
   <!-- Features2 Widget ************** -->
 
-  <Features2
+  <!-- <Features2
     title="About us"
     subtitle="We believe in the magic of turning dreams into stunning realities. Founded by passionate developers with a shared vision, we set out to simplify the website creation process. Our templates bring together the innovation of Astro 4.0 and the versatility of Tailwind CSS, enabling you to express your unique brand identity like never before."
   >
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
-  </Features2>
+  </Features2> -->
 
   <!-- Stats Widget ****************** -->
+
+  <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
 
   <Stats
     title="Discover the impressive impact of Astrowind"
@@ -82,7 +85,7 @@ const metadata = {
 
   <!-- Brands Widget ****************** -->
 
-  <Brands
+  <!-- <Brands
     title="Partnerships & Collaborations"
     subtitle="At Astrowind, we believe in the power of collaboration to drive innovation and create exceptional experiences."
     icons={[]}
@@ -125,10 +128,10 @@ const metadata = {
         alt: 'Yahoo',
       },
     ]}
-  />
+  /> -->
 
   <!-- Features2 Widget ************** -->
-
+<!-- 
   <Features2
     title="What services do we provide?"
     subtitle="We offer a wide range of website templates that suit various industries and purposes such as business, portfolio, e-commerce, blog, etc."
@@ -156,51 +159,78 @@ const metadata = {
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
-  </Features2>
+  </Features2> -->
 
   <!-- Features Widget *************** -->
 
+  <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
+
   <Features
     id="features"
-    title="Main features of our templates"
-    subtitle="Possess several key characteristics to effectively cater to the needs of startups and entrepreneurs."
+    title="Main features of SynCal"
+    subtitle="We provide several simple features to help you manage your calendars with ease."
     columns={3}
     items={[
       {
-        title: 'Modern and Professional Design',
+        title: 'Bydirectional Sync',
         description:
-          'Have a contemporary design that reflects current design trends and gives a professional impression.',
-        icon: 'tabler:artboard',
+          'Sync your Google and Outlook calendars in both directions, ensuring that all your events and appointments are up to date on both platforms.',
+        icon: 'tabler:arrows-right-left',
       },
       {
-        title: 'Responsive and Mobile-Friendly',
-        description: 'Adapt seamlessly to different screen sizes and devices to ensure a consistent experience.',
-        icon: 'tabler:picture-in-picture',
+        title: 'Any two calendars',
+        description:
+          'Sync 2 Google calendars, 2 Outlook calendars, one of each or multiple at the same time. The choice is yours.',
+        icon: 'tabler:relation-many-to-many',
       },
       {
         title: 'Customizability',
         description:
-          'Easily customizable, allowing users to adapt the design, colors, typography, and content to match their brand identity.',
+          'Easily customizable, you can change the title, color, and other settings of the events that are synced.',
         icon: 'tabler:adjustments-horizontal',
       },
       {
-        title: 'Fast Loading Times',
-        description: 'Optimized for speed to ensure a smooth user experience and favorable search engine rankings.',
-        icon: 'tabler:rocket',
+        title: 'Responsive and Mobile-Friendly',
+        description: 'Use SynCal anywhere, anytime, on any device. Our platform is fully responsive and mobile-friendly.',
+        icon: 'tabler:picture-in-picture',
       },
+      
       {
-        title: 'Search Engine Optimization (SEO)',
-        description:
-          'Incorporate SEO best practices in template structure and code to improve visibility in search engine results.',
-        icon: 'tabler:arrows-right-left',
+        title: 'No installation',
+        description: 'SynCal is a web-based tool, so you don’t need to install any software or plugins to use it.',
+        icon: 'tabler:download-off',
       },
+      
       {
         title: 'Compatibility',
-        description: 'The templates work seamlessly across various content management systems and website builders.',
+        description: 'SynCal is compatible with the most popular calendar platforms, including Google Calendar and Outlook.',
         icon: 'tabler:plug-connected',
       },
     ]}
   />
+
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Start Syncing',
+        href: getPermalink('/sign-up'),
+        icon: 'tabler:calendar-repeat',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Start syncing <span class="hidden sm:inline">your calendars</span> today with SynCal.
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Say goodbye to double bookings and missed appointments with our seamless calendar integration.
+    </Fragment>
+  </CallToAction>
+
+
+  <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
 
   <!-- FAQs Widget ******************* -->
 
@@ -208,34 +238,34 @@ const metadata = {
     title="Frequently Asked Questions"
     items={[
       {
-        title: 'What are landing page templates?',
+        title: 'What does SynCal do exactly?',
         description:
-          'Landing page templates are pre-designed web page layouts that are specifically created to serve as a foundation for building effective landing pages. These templates are designed to capture the attention of visitors and guide them towards a specific action or goal, such as signing up for a newsletter, making a purchase, or downloading a resource.',
+          'SynCal syncs your Google and Outlook calendars, allowing you to keep both calendars up-to-date automatically. You can create sync tasks to manage how events are synchronized between your calendars.',
       },
       {
-        title: 'Why should I use a template?',
+        title: 'Can I sync events in both directions?',
         description:
-          'Some of the advantages are that they provide a ready-to-use structure,  saving you significant time. Are designed with user-friendliness in mind and provide a cost-effective alternative, saving you money while still delivering a quality result.',
+          'Yes, you can set up sync tasks to be unidirectional (one-way) or bidirectional (two-way), depending on your needs. This gives you flexibility in how you want your events to be synced.',
       },
       {
-        title: 'Can I preview templates before buying?',
+        title: 'Can I have multiple sync tasks running simultaneously?',
         description:
-          'Yes, the templates allow you to preview them before making a purchase. There is a "Demo" button associated with each template.',
+          'Absolutely! You can create and manage multiple sync tasks to handle different synchronization scenarios between your Google and Outlook calendars.',
       },
       {
-        title: 'Do I need technical skills to use a template?',
+        title: 'Is it possible to modify event details when syncing?',
         description:
-          'Advanced technical skills are not required to use a template, but having a basic understanding of web navigation and familiarity with using online tools can still be beneficial. If you have more specific customization needs, you might need to consult guides or reach out to customer support for assistance.',
+          'Yes, you can choose to modify event details during the syncing process to maintain privacy or to customize how events appear on the other calendar.',
       },
       {
-        title: 'Can I use the template on multiple websites?',
+        title: 'How do I ensure my event details remain private?',
         description:
-          'No, the template comes with a single-use license, meaning you can use the template on one website or project only. Using the template on additional websites would require purchasing additional licenses.',
+          'When setting up a sync task, you can select options to modify specific details of events such as titles, descriptions, and locations to ensure your privacy is maintained.',
       },
       {
-        title: 'What if I need help with customization?',
+        title: 'Can I sync only events where I am busy or free?',
         description:
-          "The templates provides a comprehensive step-by-step guide that walk you through the customization process. If you still have doubts, you can reach out to our customer support team. They can answer your questions, provide guidance on customization, and address any issues you're facing.",
+          'Yes, you can choose to sync only events where you are busy or free, giving you control over which events are synchronized between your Google and Outlook calendars.',
       },
     ]}
   >
@@ -246,7 +276,7 @@ const metadata = {
 
   <!-- Features3 Widget ************** -->
 
-  <Features3
+  <!-- <Features3
     title="Let us know how we can help"
     subtitle="We’re here to help and answer any question you might have."
     columns={4}
@@ -292,7 +322,7 @@ const metadata = {
         },
       },
     ]}
-  />
+  /> -->
 
   <!-- CallToAction Widget *********** -->
 
@@ -300,18 +330,18 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        target: '_blank',
-        text: 'Get templates',
-        href: 'https://github.com/onwidget/astrowind',
-        icon: 'tabler:download',
+        text: 'Start Syncing',
+        href: getPermalink('/sign-up'),
+        icon: 'tabler:calendar-repeat',
       },
     ]}
   >
-    <Fragment slot="title">Be a part of our vision</Fragment>
+    <Fragment slot="title">
+      Start syncing <span class="hidden sm:inline">your calendars</span> today with SynCal.
+    </Fragment>
 
     <Fragment slot="subtitle">
-      Discover a dynamic work environment, unparalleled growth opportunities, and the chance to make a meaningful
-      impact.
+      Say goodbye to double bookings and missed appointments with our seamless calendar integration.
     </Fragment>
   </CallToAction>
 </Layout>
