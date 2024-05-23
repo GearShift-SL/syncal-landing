@@ -24,26 +24,27 @@ const metadata = {
   <!-- Pricing Widget ******************* -->
 
   <Prices
+  id='pricing'
     title="Our prices"
     subtitle="Only pay for what you need"
     prices={[
       {
-        title: 'basic',
-        subtitle: 'Optimal choice for personal use',
-        price: 29,
-        period: 'per month',
+        title: 'pay as you go',
+        subtitle: 'Optimal choice if you are just starting out',
+        price: 2,
+        period: 'per sync task per month',
         items: [
           {
-            description: 'Etiam in libero, et volutpat',
+            description: 'Only pay for the sync tasks you need',
           },
           {
-            description: 'Aenean ac nunc dolor tristique',
+            description: 'Flexible usage based on your needs',
           },
           {
-            description: 'Cras scelerisque accumsan lib',
+            description: 'Basic support',
           },
           {
-            description: 'In hac habitasse',
+            description: 'No long-term commitment',
           },
         ],
         callToAction: {
@@ -55,23 +56,20 @@ const metadata = {
       {
         title: 'standard',
         subtitle: 'Optimal choice for small teams',
-        price: 69,
+        price: 5,
         period: 'Per Month',
         items: [
           {
-            description: 'Proin vel laoreet',
+            description: 'Unlimited sync tasks',
           },
           {
-            description: 'Ut efficitur habitasse egestas',
+            description: 'Automated daily syncs'
           },
           {
-            description: 'Volutpat hac curabitur',
+            description: 'Priority support',
           },
           {
-            description: 'Pellentesque blandit ut nibh',
-          },
-          {
-            description: 'Donec fringilla sem',
+            description: 'Advanced privacy controls',
           },
         ],
         callToAction: {
@@ -83,22 +81,21 @@ const metadata = {
         ribbonTitle: 'popular',
       },
       {
-        title: 'premium',
+        title: 'enterprise',
         subtitle: 'Optimal choice for companies',
-        price: 199,
-        period: 'Per Month',
+
         items: [
           {
-            description: 'Curabitur suscipit risus',
+            description: 'Unlimited sync tasks',
           },
           {
-            description: 'Aliquam habitasse malesuada',
+            description: 'Unlimited accounts',
           },
           {
-            description: 'Suspendisse sit amet blandit',
+            description: 'Personalized setup and support',
           },
           {
-            description: 'Suspendisse auctor blandit dui',
+            description: 'Custom features and integrations',
           },
         ],
         callToAction: {
@@ -231,14 +228,21 @@ const metadata = {
   <!-- CallToAction Widget *********** -->
 
   <CallToAction
-    title="Ready to boost your projects?"
-    subtitle="Join our community of satisfied customers who have transformed their work with our templates."
     actions={[
       {
         variant: 'primary',
-        text: 'Get started now',
-        href: '/',
+        text: 'Start Syncing',
+        href: '/sign-up',
+        icon: 'tabler:calendar-repeat',
       },
     ]}
-  />
+  >
+    <Fragment slot="title">
+      Start syncing <span class="hidden sm:inline">your calendars</span> today with SynCal.
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Say goodbye to double bookings and missed appointments with our seamless calendar integration.
+    </Fragment>
+  </CallToAction>
 </Layout>
