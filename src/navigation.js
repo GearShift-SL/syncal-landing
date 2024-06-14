@@ -28,9 +28,9 @@ export const footerData = {
     {
       title: 'Product',
       links: [
-        { text: 'Features', href: '#features' },
-        { text: 'Pricing', href: '#pricing' },
-        { text: 'Enterprise', href: '#pricing' },
+        { text: 'Features', href: '/#features' },
+        { text: 'Pricing', href: '/#pricing' },
+        { text: 'Enterprise', href: '/#pricing' },
       ],
     },
     {
