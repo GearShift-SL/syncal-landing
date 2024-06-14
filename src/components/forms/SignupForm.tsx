@@ -106,7 +106,7 @@ const SignupForm = () => {
                 <input
                   required
                   {...register("last_name", { required: true })}
-                  placeholder="Doe"
+                  placeholder="Lemons"
                   className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${
                     errors.last_name ? "border-red-400" : ""
                   }`}
@@ -129,7 +129,7 @@ const SignupForm = () => {
                 <input
                   required
                   {...register("email", { required: true })}
-                  placeholder="Doe"
+                  placeholder="email@gmail.com"
                   className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${
                     errors.email ? "border-red-400" : ""
                   }`}
@@ -153,7 +153,6 @@ const SignupForm = () => {
                   required
                   type="password"
                   {...register("password", { required: true })}
-                  placeholder="Doe"
                   className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${
                     errors.password ? "border-red-400" : ""
                   }`}
@@ -177,7 +176,6 @@ const SignupForm = () => {
                   required
                   type="password"
                   {...register("confirm_password", { required: true })}
-                  placeholder="Doe"
                   className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${
                     errors.confirm_password ? "border-red-400" : ""
                   }`}
