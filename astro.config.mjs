@@ -10,6 +10,7 @@ import compress from '@playform/compress';
 import astrowind from './vendor/integration';
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter.mjs';
 import react from "@astrojs/react";
+import node from "@astrojs/node";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const hasExternalScripts = false;
 const whenExternalScripts = (items = []) => hasExternalScripts ? Array.isArray(items) ? items.map(item => item()) : [items()] : [];
@@ -17,7 +18,10 @@ const whenExternalScripts = (items = []) => hasExternalScripts ? Array.isArray(i
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'static',
+  output: 'hybrid',
+  adapter: node({
+    mode: "standalone"
+  }),
   integrations: [tailwind({
     applyBaseStyles: false
   }), sitemap(), mdx(), icon({
