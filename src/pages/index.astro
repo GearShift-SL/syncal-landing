@@ -6,6 +6,7 @@ import Features from "~/components/widgets/Features.astro";
 import Stats from "~/components/widgets/Stats.astro";
 import FAQs from "~/components/widgets/FAQs.astro";
 import syncalAnimation from "~/assets/images/SynCal_animation.svg?raw";
+import Brands from "~/components/widgets/Brands.astro";
 
 // Import getpermalink
 import { getPermalink } from "~/utils/permalinks";
@@ -17,7 +18,7 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <div class="py-20">
+  <div class="">
     <Hero
       actions={[
         {
@@ -54,6 +55,28 @@ const metadata = {
       </Fragment>
     </Hero>
   </div>
+
+  <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
+
+  <Brands
+    id="brands"
+    title="Works with"
+    subtitle="SynCal is compatible with the most popular calendar platforms."
+    images={[
+      {
+        src: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Calendar_icon_%282020%29.svg",
+        alt: "Google Calendar"
+      },
+      {
+        src: "https://upload.wikimedia.org/wikipedia/commons/9/90/Outlook.com_icon_%282012-2019%29.svg",
+        alt: "Microsoft Outlook"
+      }
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Brands>
 
   <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
 
@@ -114,7 +137,11 @@ const metadata = {
         icon: "tabler:plug-connected"
       }
     ]}
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features>
 
   <CallToAction
     actions={[
@@ -134,6 +161,10 @@ const metadata = {
     <Fragment slot="subtitle">
       Say goodbye to double bookings and missed appointments with our seamless
       calendar integration.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
   </CallToAction>
 
