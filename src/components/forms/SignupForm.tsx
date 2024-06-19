@@ -38,7 +38,6 @@ const SignupForm = () => {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors }
   } = useForm<SignupFormValues>({
