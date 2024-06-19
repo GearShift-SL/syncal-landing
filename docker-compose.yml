@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  node:
+    image: ${DOCKER_REGISTRY_URL}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}
+    ports:
+      - "4321:4321"
+    environment:
+      - BREVO_API_KEY=${BREVO_API_KEY}
+    restart: always
