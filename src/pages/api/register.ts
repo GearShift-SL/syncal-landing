@@ -8,16 +8,12 @@ export const POST: APIRoute = async ({ request }) => {
     const email = body.email;
     const first_name = body.first_name;
     const last_name = body.last_name;
-    const password = body.password;
-    const confirm_password = body.confirm_password;
+    // const password = body.password;
+    // const confirm_password = body.confirm_password;
 
     console.log("Email:", email);
 
-    // Declares the Brevo API URL
     const BREVO_API_URL = "https://api.brevo.com/v3/contacts";
-
-    // Gets the Brevo API Key from an environment variable
-    // Check the note on environment variables in the SSR section of this article to understand what is going on here
     const BREVO_API_KEY =
       import.meta.env.BREVO_API_KEY ?? process.env.BREVO_API_KEY;
 
@@ -32,7 +28,11 @@ export const POST: APIRoute = async ({ request }) => {
     const payload = {
       updateEnabled: true,
       email: email,
-      listIds: [3]
+      listIds: [3],
+      attributes: {
+        FIRSTNAME: first_name,
+        LASTNAME: last_name
+      }
     };
 
     // Whatever process you want to do in your API endpoint should be inside a try/catch block
@@ -66,6 +66,7 @@ export const POST: APIRoute = async ({ request }) => {
       } else {
         // Request failed
         console.error("Failed to add contact to Brevo");
+        console.log("Response:", response);
 
         // Return a 400 status to our frontend
         return new Response(null, { status: 400 });
