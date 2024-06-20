@@ -392,7 +392,7 @@ Adjusting your timeboxing strategy is key to continuous improvement.
 1. **Reallocate Time**: Based on your reviews, reallocated more time to high-priority or time-consuming tasks.
 2. **Reorder Tasks**: Adjust the order of tasks to optimize your workflow.
 
-**Practical Use**: Use [Google Calendar](https://calendar.google.com/) or [Microsoft Outlook](https://outlook.live.com/) to easily adjust your time blocks. Syncal can help keep your adjustments synchronized across all your devices.
+**Practical Use**: Use [Google Calendar](https://calendar.google.com/) or [Microsoft Outlook](https://outlook.live.com/) to easily adjust your time blocks. [Syncal](https://syncal.app) can help keep your adjustments synchronized across all your devices.
 
 #### Strategies for Overcoming Obstacles
 
