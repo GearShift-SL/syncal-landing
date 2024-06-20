@@ -6,7 +6,6 @@ excerpt: Learn how to timebox your day efficiently and withou stress. Boost your
 image: https://cdn.prod.website-files.com/634681057b887c6f4830fae2/6367dd4a26b9af2089507a6f_6259f844625eef1e06aa276c_time-blocking-p-1080.png
 category: Guides
 tags:
-  - guides
   - timeboxing
   - time management
 # metadata:
