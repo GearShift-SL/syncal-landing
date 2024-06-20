@@ -6,8 +6,8 @@ excerpt: Learn the essential Google Calendar features you should be using to mas
 image: ~/assets/images/blog/essential-google-calendar-features-you-should-be-using.jpg
 category: Guides
 tags:
-  - timeboxing
-  - time management
+  - google calendar
+  - productivity
 # metadata:
 #   canonical: https://astrowind.vercel.app/get-started-website-with-astro-tailwind-css
 ---
