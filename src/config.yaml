@@ -68,7 +68,7 @@ analytics:
     googleAnalytics:
       id: null # Should be null if googleTagManager is enabled
     googleTagManager:
-      id: GTM-5ZQZQZQ # Should be null if googleAnalytics is enabled
+      id: GTM-W2LTR5HF # Should be null if googleAnalytics is enabled
 
 ui:
   theme: "system" # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
