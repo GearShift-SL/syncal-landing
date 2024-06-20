@@ -8,3 +8,10 @@ services:
     environment:
       - BREVO_API_KEY=${BREVO_API_KEY}
     restart: always
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/daniel/.docker/config.json:/config.json
+    command: --interval ${WATCHTOWER_INTERVAL}
