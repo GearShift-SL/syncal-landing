@@ -1,58 +1,91 @@
 ---
-import "~/assets/styles/tailwind.css";
+import type { ImageMetadata } from 'astro';
 
-import { I18N } from "astrowind:config";
+import Favicons from '~/meta/Favicons.astro';
+import '~/styles/global.css';
+import '@fontsource-variable/inter';
+import BasicScripts from '~/components/common/BasicScripts.astro';
+import { SITE } from '~/config';
+import { SEO } from 'astro-seo';
 
-import AnalyticsHead from "~/components/common/AnalyticsHead.astro";
-import AnalyticsBody from "~/components/common/AnalyticsBody.astro";
-import CommonMeta from "~/components/common/CommonMeta.astro";
-import Favicons from "~/components/Favicons.astro";
-import CustomStyles from "~/components/CustomStyles.astro";
-import ApplyColorMode from "~/components/common/ApplyColorMode.astro";
-import Metadata from "~/components/common/Metadata.astro";
-import SiteVerification from "~/components/common/SiteVerification.astro";
-import BasicScripts from "~/components/common/BasicScripts.astro";
+import importImage from '~/utils/importImage';
 
-// Comment the line below to disable View Transitions
-import { ViewTransitions } from "astro:transitions";
-
-import type { MetaData as MetaDataType } from "~/types";
-
+// Accept metadata props that can be passed from blog posts
 export interface Props {
-  metadata?: MetaDataType;
+  metadata?: {
+    title?: string;
+    useTitleTemplate?: boolean;
+    description?: string;
+    ogImagePath?: string;
+    canonicalUrl?: string;
+    pubDatetime?: Date;
+    modDatetime?: Date;
+    author?: string;
+    index?: boolean;
+    follow?: boolean;
+  };
 }
 
-const { metadata = {} } = Astro.props;
-const { language, textDirection } = I18N;
+const { metadata } = Astro.props;
+
+// Import the ogImage dynamically if it's provided
+let ogImage: ImageMetadata | undefined;
+if (metadata?.ogImagePath) {
+  ogImage = await importImage(metadata?.ogImagePath);
+}
 ---
 
 <!doctype html>
-<html lang={language} dir={textDirection} class="2xl:text-[20px]">
+<html lang="es" dir="ltr">
   <head>
-    <AnalyticsHead />
+    <!-- Common Metadata -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <CommonMeta />
+    <!-- Analytics -->
+    {
+      import.meta.env.PROD && (
+        <script defer src="https://umami.hlab.es/qfwafsimpx" data-website-id="18a994aa-9aad-468d-8075-83210c91ed3c" />
+      )
+    }
+
+    <!-- Favicons -->
     <Favicons />
-    <CustomStyles />
-    <ApplyColorMode />
-    <Metadata {...metadata} />
-    <SiteVerification />
 
-    <!-- Comment the line below to disable View Transitions -->
-    <ViewTransitions fallback="swap" />
+    <!-- SEO stuff -->
+    <!-- Uses SITE config by default -->
+    <SEO
+      title={metadata?.title || SITE().title}
+      titleTemplate={metadata?.useTitleTemplate ? `%s - ${SITE().title}` : undefined}
+      description={metadata?.description || SITE().description}
+      canonical={metadata?.canonicalUrl || Astro.url.href}
+      noindex={metadata?.index === false}
+      nofollow={metadata?.follow === false}
+      openGraph={{
+        basic: {
+          title: metadata?.title || SITE().title,
+          type: 'website',
+          image: ogImage?.src || SITE().ogImage,
+          url: metadata?.canonicalUrl || Astro.url.href,
+        },
+        optional: {
+          locale: SITE().locale,
+          siteName: SITE().title,
+          description: metadata?.description || SITE().description,
+        },
+      }}
+      twitter={{
+        card: 'summary_large_image',
+        site: SITE().twitter.site,
+        title: metadata?.title || SITE().title,
+        description: metadata?.description || SITE().description,
+        image: ogImage?.src || SITE().ogImage,
+      }}
+    />
   </head>
-
-  <body class="antialiased text-default bg-page tracking-tight">
-    <AnalyticsBody />
-
+  <body class="bg-page text-default">
     <slot />
-
     <BasicScripts />
-
-    <style is:global>
-      img {
-        content-visibility: auto;
-      }
-    </style>
   </body>
 </html>

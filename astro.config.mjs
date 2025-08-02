@@ -1,65 +1,27 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { defineConfig, squooshImageService } from 'astro/config';
+// @ts-check
+import { defineConfig } from 'astro/config';
+import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
-import tailwind from '@astrojs/tailwind';
-import mdx from '@astrojs/mdx';
-import partytown from '@astrojs/partytown';
 import icon from 'astro-icon';
-import compress from '@playform/compress';
-import astrowind from './vendor/integration';
-import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter.mjs';
-import react from "@astrojs/react";
-import node from "@astrojs/node";
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const hasExternalScripts = false;
-const whenExternalScripts = (items = []) => hasExternalScripts ? Array.isArray(items) ? items.map(item => item()) : [items()] : [];
 
+import mdx from '@astrojs/mdx';
+
+import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'hybrid',
-  adapter: node({
-    mode: "standalone"
-  }),
-  integrations: [tailwind({
-    applyBaseStyles: false
-  }), sitemap(), mdx(), icon({
-    include: {
-      tabler: ['*'],
-      'flat-color-icons': ['template', 'gallery', 'approval', 'document', 'advertising', 'currency-exchange', 'voice-presentation', 'business-contact', 'database']
-    }
-  }), ...whenExternalScripts(() => partytown({
-    config: {
-      forward: ['dataLayer.push']
-    }
-  })), compress({
-    CSS: true,
-    HTML: {
-      'html-minifier-terser': {
-        removeAttributeQuotes: false
-      }
-    },
-    Image: false,
-    JavaScript: true,
-    SVG: false,
-    Logger: 1
-  }), astrowind({
-    config: './src/config.yaml'
-  }), react()],
-  image: {
-    service: squooshImageService(),
-    domains: ['cdn.pixabay.com']
-  },
-  markdown: {
-    remarkPlugins: [readingTimeRemarkPlugin],
-    rehypePlugins: [responsiveTablesRehypePlugin, lazyImagesRehypePlugin]
-  },
   vite: {
-    resolve: {
-      alias: {
-        '~': path.resolve(__dirname, './src')
-      }
-    }
-  }
+    plugins: [tailwindcss()],
+  },
+
+  site: 'https://autoipc.es',
+  integrations: [
+    icon(),
+    sitemap({
+      filter: (page) => page !== 'https://autoipc.es/stripe-callback/',
+    }),
+    mdx(),
+    react(),
+  ],
+  trailingSlash: 'always',
 });

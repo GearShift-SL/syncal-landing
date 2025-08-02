@@ -1,2 +1,8 @@
+# robots.txt for https://autoipc.es
+
 User-agent: *
-Disallow:
+Disallow: /cdn-cgi/
+Allow: /
+
+# Sitemaps
+Sitemap: https://autoipc.es/sitemap-index.xml 

@@ -1,319 +1,100 @@
 ---
-import Layout from "~/layouts/PageLayout.astro";
-import Hero from "~/components/widgets/Hero.astro";
-import CallToAction from "~/components/widgets/CallToAction.astro";
-import Features from "~/components/widgets/Features.astro";
-import Stats from "~/components/widgets/Stats.astro";
-import FAQs from "~/components/widgets/FAQs.astro";
-import syncalAnimation from "~/assets/images/SynCal_animation.svg?raw";
-import Brands from "~/components/widgets/Brands.astro";
-
-// Import getpermalink
-import { getPermalink } from "~/utils/permalinks";
-import Pricing from "~/components/widgets/Pricing.astro";
-
-const metadata = {
-  title: "Home"
-};
+import FAQ from '~/components/landing/FAQ.astro';
+import Features from '~/components/landing/Features.astro';
+import FooterHero from '~/components/landing/FooterHero.astro';
+import Hero from '~/components/landing/Hero.astro';
+import Testimonials from '~/components/landing/Testimonials.astro';
+import Transformation from '~/components/landing/Transformation.astro';
+import PageLayout from '~/layouts/PageLayout.astro';
+import { Image } from 'astro:assets';
+import AsSeenOn from '~/components/landing/AsSeenOn.astro';
+import Pricing from '~/components/landing/Pricing.tsx';
+import demoImage from '../assets/images/demo-image.png';
+import DemoAnimation from '../assets/videos/SynCal_animation.svg';
 ---
 
-<Layout metadata={metadata}>
-  <div class="">
-    <Hero
-      actions={[
+<PageLayout>
+  <section id="hero" class="scroll-mt-24">
+    <Hero />
+  </section>
+
+  <!-- <section id="demovideo">
+    <DemoVideo />
+  </section> -->
+
+  <section id="social-proof">
+    <AsSeenOn
+      logoLists={[
         {
-          variant: "primary",
-          text: "Start Syncing",
-          href: getPermalink("/sign-up"),
-          icon: "tabler:calendar-repeat"
+          title: 'as seen on',
+          logos: [
+            { name: 'El Referente', icon: 'elreferente-logo', height: 8 },
+            { name: 'Gearshift', icon: 'gearshift-logo', height: 8 },
+          ],
         },
-        { text: "Learn more", href: "#features" }
+        {
+          title: 'and used by',
+          logos: [
+            { name: 'Rentake', icon: 'rentake-logo', height: 12 },
+            { name: 'Emissary', icon: 'emissary-logo', height: 12 },
+          ],
+        },
       ]}
-    >
-      <Fragment slot="title">
-        Syncronize your <span class="hidden sm:inline">Google and Outlook</span>
-        <span class="text-accent dark:text-white highlight">calendars</span> with
-        ease.
-      </Fragment>
+    />
+  </section>
 
-      <Fragment slot="subtitle">
-        SynCal is a powerful tool that allows you to sync your Google and
-        Outlook calendars in a few simple steps. <span class="font-semibold"
-          >Say goodbye to double bookings and missed appointments</span
-        > with our seamless calendar integration.
-      </Fragment>
-
-      <Fragment slot="image">
-        <!-- <YouTube id="gxBkghlglTg" title="Astro just Launched.... Could it be the ultimate web framework?" />
-      <style is:inline>
-        lite-youtube {
-          margin: 0 auto;
-          max-width: 100%;
-        }
-      </style> -->
-        <Fragment set:html={syncalAnimation} />
-      </Fragment>
-    </Hero>
+  <!-- Separator -->
+  <div class="w-full max-w-5xl mx-auto px-4 my-5">
+    <hr class="border-gray-200" />
   </div>
 
-  <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
+  <section id="transformation">
+    <Transformation />
+  </section>
 
-  <Brands
-    id="brands"
-    title="Works with"
-    subtitle="SynCal is compatible with the most popular calendar platforms."
-    images={[
-      {
-        src: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Calendar_icon_%282020%29.svg",
-        alt: "Google Calendar"
-      },
-      {
-        src: "https://upload.wikimedia.org/wikipedia/commons/9/90/Outlook.com_icon_%282012-2019%29.svg",
-        alt: "Microsoft Outlook"
-      }
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Brands>
+  <section id="how-to-use" class="scroll-mt-24">
+    <div class="max-w-6xl mx-auto px-4 py-12">
+      <div class="text-center mb-16">
+        <h2 class="text-5xl font-bold mb-4">How does it work</h2>
+      </div>
 
-  <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
+      <!-- Numbered list of steps -->
+      <div class="flex flex-col gap-4 text-2xl">
+        <div>1. 📄 Connect multiple Google or Microsoft accounts</div>
+        <div>2. 🤖 Create a sync task to send events from one calendar to another</div>
+        <div>3. 🧮 Select what information you want to sync</div>
+        <div>4. 📨 SynCal starts syncing everything for you</div>
+      </div>
+    </div>
 
-  <Stats
-    title="Wall of love"
-    subtitle="The numbers below reflect the trust our users have placed in us."
-    stats={[
-      { title: "Satisfied Users", amount: "50+" },
-      { title: "active sync tasks", amount: "78" },
-      { title: "User Ratings", amount: "4.8" }
-    ]}
-  />
+    <div class="max-w-4xl mx-auto px-4">
+      <!-- <Image src={demoAnimation} alt="Demo preview" class="mx-auto rounded-4xl shadow-lg" loading="lazy" /> -->
+      <DemoAnimation />
+    </div>
+  </section>
 
-  <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
+  <!-- Separator -->
+  <div class="w-full max-w-5xl mx-auto px-4 my-5">
+    <hr class="border-gray-200" />
+  </div>
 
-  <Features
-    id="features"
-    title="Main features of SynCal"
-    subtitle="We provide several simple features to help you manage your calendars with ease."
-    columns={3}
-    items={[
-      {
-        title: "Bydirectional Sync",
-        description:
-          "Sync your Google and Outlook calendars in both directions, ensuring that all your events and appointments are up to date on both platforms.",
-        icon: "tabler:arrows-right-left"
-      },
-      {
-        title: "Any two calendars",
-        description:
-          "Sync 2 Google calendars, 2 Outlook calendars, one of each or multiple at the same time. The choice is yours.",
-        icon: "tabler:relation-many-to-many"
-      },
-      {
-        title: "Customizability",
-        description:
-          "Easily customizable, you can change the title, color, and other settings of the events that are synced.",
-        icon: "tabler:adjustments-horizontal"
-      },
-      {
-        title: "Responsive and Mobile-Friendly",
-        description:
-          "Use SynCal anywhere, anytime, on any device. Our platform is fully responsive and mobile-friendly.",
-        icon: "tabler:picture-in-picture"
-      },
+  <section id="social-proof">
+    <Testimonials />
+  </section>
 
-      {
-        title: "No installation",
-        description:
-          "SynCal is a web-based tool, so you don’t need to install any software or plugins to use it.",
-        icon: "tabler:download-off"
-      },
+  <section id="features" class="scroll-mt-24">
+    <Features />
+  </section>
 
-      {
-        title: "Compatibility",
-        description:
-          "SynCal is compatible with the most popular calendar platforms, including Google Calendar and Outlook.",
-        icon: "tabler:plug-connected"
-      }
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Features>
+  <section id="faq" class="scroll-mt-24">
+    <FAQ />
+  </section>
 
-  <CallToAction
-    actions={[
-      {
-        variant: "primary",
-        text: "Start Syncing",
-        href: getPermalink("/sign-up"),
-        icon: "tabler:calendar-repeat"
-      }
-    ]}
-  >
-    <Fragment slot="title">
-      Start syncing <span class="hidden sm:inline">your calendars</span> today with
-      SynCal.
-    </Fragment>
+  <section id="pricing" class="scroll-mt-24">
+    <Pricing client:only="react" />
+  </section>
 
-    <Fragment slot="subtitle">
-      Say goodbye to double bookings and missed appointments with our seamless
-      calendar integration.
-    </Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </CallToAction>
-
-  <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
-
-  <Pricing
-    id="pricing"
-    title="Our prices"
-    subtitle="Only pay for what you need"
-    prices={[
-      {
-        title: "pay as you go",
-        subtitle: "Optimal choice if you are just starting out",
-        price: 2,
-        crossed_price: 3,
-        period: "per sync task per month",
-        items: [
-          {
-            description: "Only pay for the sync tasks you need"
-          },
-          {
-            description: "Flexible usage based on your needs"
-          },
-          {
-            description: "Basic support"
-          },
-          {
-            description: "No long-term commitment"
-          }
-        ],
-        callToAction: {
-          text: "Get started",
-          href: "/sign-up"
-        }
-      },
-      {
-        title: "standard",
-        subtitle: "Optimal choice for small teams",
-        price: 5,
-        crossed_price: 7,
-        period: "Per Month",
-        items: [
-          {
-            description: "Unlimited sync tasks"
-          },
-          {
-            description: "Automated daily syncs"
-          },
-          {
-            description: "Priority support"
-          },
-          {
-            description: "Advanced privacy controls"
-          }
-        ],
-        callToAction: {
-          text: "Get started",
-          href: "/sign-up"
-        },
-        hasRibbon: true,
-        ribbonTitle: "popular"
-      },
-      {
-        title: "enterprise",
-        subtitle: "Optimal choice for companies",
-
-        items: [
-          {
-            description: "Unlimited sync tasks"
-          },
-          {
-            description: "Unlimited accounts"
-          },
-          {
-            description: "Personalized setup and support"
-          },
-          {
-            description: "Custom features and integrations"
-          }
-        ],
-        callToAction: {
-          text: "Contact us",
-          href: "/contact"
-        }
-      }
-    ]}
-  />
-
-  <hr class="mx-20 border-t border-gray-200 dark:border-gray-700" />
-
-  <FAQs
-    title="Frequently Asked Questions"
-    id="faq"
-    items={[
-      {
-        title: "What does SynCal do exactly?",
-        description:
-          "SynCal syncs your Google and Outlook calendars, allowing you to keep both calendars up-to-date automatically. You can create sync tasks to manage how events are synchronized between your calendars."
-      },
-      {
-        title: "Can I sync events in both directions?",
-        description:
-          "Yes, you can set up sync tasks to be unidirectional (one-way) or bidirectional (two-way), depending on your needs. This gives you flexibility in how you want your events to be synced."
-      },
-      {
-        title: "Can I have multiple sync tasks running simultaneously?",
-        description:
-          "Absolutely! You can create and manage multiple sync tasks to handle different synchronization scenarios between your Google and Outlook calendars."
-      },
-      {
-        title: "Is it possible to modify event details when syncing?",
-        description:
-          "Yes, you can choose to modify event details during the syncing process to maintain privacy or to customize how events appear on the other calendar."
-      },
-      {
-        title: "How do I ensure my event details remain private?",
-        description:
-          "When setting up a sync task, you can select options to modify specific details of events such as titles, descriptions, and locations to ensure your privacy is maintained."
-      },
-      {
-        title: "Can I sync only events where I am busy or free?",
-        description:
-          "Yes, you can choose to sync only events where you are busy or free, giving you control over which events are synchronized between your Google and Outlook calendars."
-      }
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </FAQs>
-
-  <CallToAction
-    actions={[
-      {
-        variant: "primary",
-        text: "Start Syncing",
-        href: getPermalink("/sign-up"),
-        icon: "tabler:calendar-repeat"
-      }
-    ]}
-  >
-    <Fragment slot="title">
-      Start syncing <span class="hidden sm:inline">your calendars</span> today with
-      SynCal.
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      Say goodbye to double bookings and missed appointments with our seamless
-      calendar integration.
-    </Fragment>
-  </CallToAction>
-</Layout>
+  <section id="footer-hero">
+    <FooterHero />
+  </section>
+</PageLayout>

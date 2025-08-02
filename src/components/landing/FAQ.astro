@@ -1,0 +1,119 @@
+---
+// FAQ.astro
+
+interface FAQItem {
+  question: string;
+  answer?: string;
+  href?: string;
+}
+
+const faq: FAQItem[] = [
+  {
+    question: 'What does SynCal do exactly?',
+    answer:
+      'SynCal syncs your Google and Outlook calendars, allowing you to keep both calendars up-to-date automatically. You can create sync tasks to manage how events are synchronized between your calendars.'
+  },
+  {
+    question: 'Can I sync events from 2 calendars in both directions?',
+    answer:
+      'Yes, you can set up sync tasks to be unidirectional (one-way) or bidirectional (two-way), depending on your needs. This gives you flexibility in how you want your events to be synced.'
+  },
+  {
+    question: 'Can I have multiple sync tasks running simultaneously?',
+    answer:
+      'Absolutely! You can create and manage multiple sync tasks to handle different synchronization scenarios between your Google and Outlook calendars.'
+  },
+  {
+    question: 'Is it possible to modify event details when syncing?',
+    answer:
+      'Yes, you can choose to modify event details during the syncing process to maintain privacy or to customize how events appear on the other calendar.'
+  },
+  {
+    question: 'How do I ensure my event details remain private?',
+    answer:
+      'When setting up a sync task, you can select options to modify specific details of events such as titles, descriptions, and locations to ensure your privacy is maintained.'
+  },
+  {
+    question: 'Can I sync only events where I am busy or free?',
+    answer:
+      'Yes, you can choose to sync only events where you are busy or free, giving you control over which events are synchronized between your Google and Outlook calendars.'
+  }
+];
+---
+
+<div class="w-full max-w-6xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+  <div class="text-center mb-12">
+    <h2 class="text-5xl font-semibold mb-2">Frequently Asked Questions</h2>
+  </div>
+
+  <div class="space-y-6">
+    {
+      faq.map((item, index) => (
+        <div class="border border-gray-200 rounded-lg overflow-hidden">
+          {item.href ? (
+            <a href={item.href} class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none">
+              <span class="text-lg font-medium">{item.question}</span>
+            </a>
+          ) : (
+            <button
+              class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none hover:cursor-pointer hover:bg-blue-50"
+              id={`faq-button-${index + 1}`}
+              aria-expanded="false"
+              aria-controls={`faq-answer-${index + 1}`}
+            >
+              <span class="text-lg font-medium">{item.question}</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 text-blue-500 transform transition-transform duration-200"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                id={`faq-icon-${index + 1}`}
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          )}
+          {item.answer && (
+            <div class="px-6 py-4 bg-gray-50 hidden" id={`faq-answer-${index + 1}`}>
+              <p>{item.answer}</p>
+            </div>
+          )}
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  const faqButtons = document.querySelectorAll('[id^="faq-button-"]');
+
+  faqButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const controlId = button.getAttribute('aria-controls');
+
+      if (!controlId) return;
+
+      const content = document.getElementById(controlId);
+      const iconId = button.querySelector('svg')?.id;
+
+      if (!content || !iconId) return;
+
+      const icon = document.getElementById(iconId);
+      if (!icon) return;
+
+      // Toggle expanded state
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+
+      // Toggle content visibility
+      if (isExpanded) {
+        content.classList.add('hidden');
+        icon.classList.remove('rotate-180');
+      } else {
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      }
+    });
+  });
+</script>

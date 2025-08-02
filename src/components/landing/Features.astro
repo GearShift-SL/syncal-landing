@@ -1,0 +1,129 @@
+---
+import { Image } from 'astro:assets';
+import feature1 from '../../assets/images/feature-1.png';
+import feature2 from '../../assets/images/feature-2.png';
+import feature3 from '../../assets/images/feature-3.png';
+import feature4 from '../../assets/images/feature-4.png';
+
+// Features.astro
+
+type Feature = {
+  tag: string;
+  title: string;
+  description: string;
+  video?: string;
+  image?: ImageMetadata;
+  ctaText: string;
+  ctaTextMobile?: string;
+  ctaLink: string;
+  ctaNote?: string;
+};
+
+const features: Feature[] = [
+  {
+    tag: 'EASY SETUP',
+    title: 'Just connect your accounts and start syncing',
+    description: `
+      SynCal will sync the calendars of your choice automatically.
+      <br/><br/>
+      Just connect as many Google or Microsoft account as you want.
+      You can do this by just clicking the respective "Connect Google Account" or "Connect Microsoft Account" buttons inside the tool.
+      <br/><br/>
+      If you logged into SynCal with Google, you will automatically have access to the Google Calendars on that account.
+      <br/><br/>
+    `,
+    ctaText: 'Connect your calendars now',
+    ctaTextMobile: 'Connect your calendars',
+    ctaLink: '#hero',
+    image: feature1,
+  },
+  {
+    tag: 'LIFE - WORK BALANCE',
+    title: 'Block your personal events in your work calendar',
+    description: `
+      Many of our customers use SynCal to sync their personal and work calendars.
+      <br/><br/>
+      This means that you can automatically block time in your work calendar whenever you have a personal event without sharing the event's details.
+      <br/><br/>
+      If you also want to see any work events in your personal calendar so you don't miss anything, you can do that too.
+    `,
+    ctaText: 'Sync your calendars now',
+    ctaTextMobile: 'Sync your calendars',
+    ctaLink: '#hero',
+    image: feature2,
+  },
+  {
+    tag: 'KEEP UP WITH MEETINGS',
+    title: 'Never miss a meeting',
+    description: `
+      Many of our customers also have multiple work calendars, especially entrepreneurs with several brands.
+      <br/><br/>
+      In these cases, SynCal can merge all the events from all their Google Calendars into a single calendar of their choice. Making sure you never miss a meeting.
+      <br/><br/>
+    `,
+    ctaText: 'Never miss a meeting again',
+    ctaTextMobile: 'Never miss a meeting',
+    ctaLink: '#hero',
+    image: feature3,
+  },
+  {
+    tag: 'WITH PRIVACY IN MIND',
+    title: 'Only share what you want',
+    description: `
+      Sync tasks are customizeable in many ways.
+      <br/><br/>
+      One of those wais is to sync only the information you want. If you don't want your work calendar to show that you have a specific personal appointment, you can select to only sync the event times and put a placeholder such as "Personal appointment".
+      <br/><br/>
+    `,
+    ctaText: 'Only share what you want',
+    ctaTextMobile: 'Only share what you want',
+    ctaLink: '#hero',
+    image: feature4,
+  },
+];
+---
+
+<section class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+  <!-- Main section title -->
+  <div class="text-center mb-16">
+    <h2 class="text-5xl font-semibold text-gray-900">
+      This is how we give you <br /><span class="text-primary font-medium">peace of mind</span>
+    </h2>
+  </div>
+
+  <!-- Features -->
+  <div class="space-y-24">
+    {
+      features.map((feature, index) => (
+        <div
+          id={`feature-${index}`}
+          class={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 items-center scroll-mt-24`}
+        >
+          <div class="lg:w-1/2 space-y-4">
+            <p class="text-sm font-semibold text-gray-500 tracking-wider uppercase">{feature.tag}</p>
+            <h3 class="text-4xl text-gray-900">{feature.title}</h3>
+            <div class="text-lg text-gray-600" set:html={feature.description} />
+
+            <div class="pt-4">
+              <a href={feature.ctaLink} class="cta-secondary font-semibold">
+                <span class="hidden sm:inline">{feature.ctaText}</span>
+                <span class="sm:hidden">{feature.ctaTextMobile || feature.ctaText}</span>
+              </a>
+              {feature.ctaNote && <p class="text-sm text-gray-500 mt-4 ml-4">{feature.ctaNote}</p>}
+            </div>
+          </div>
+
+          <div class="lg:w-1/2 rounded-lg overflow-hidden shadow-lg">
+            {feature.video && (
+              <video autoplay loop muted playsinline class="w-full">
+                <source src={feature.video} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            )}
+            {feature.image && <Image src={feature.image} alt={feature.title} class="w-full" width={800} height={600} />}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

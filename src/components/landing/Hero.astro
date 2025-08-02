@@ -1,0 +1,82 @@
+---
+import { Icon } from 'astro-icon/components';
+import CTA from '~/components/landing/CTA';
+---
+
+<div class="max-w-7xl mx-auto px-4 mt-16 relative">
+  <div class="flex flex-col lg:flex-row items-center lg:gap-12 gap-2">
+    {/* Left Column - Main Content */}
+    <div class="flex-1 text-center lg:text-left">
+      {/* Badge */}
+      <div class="inline-flex items-center bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+        <Icon name="main-logo" class="text-sm mr-2" />
+        #1 calendar syncing tool
+        <span class="ml-2">⭐⭐⭐⭐⭐</span>
+      </div>
+
+      {/* Main Heading */}
+      <h1 class="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+        Sync your calendars<br />
+        <span class="text-primary">with ease</span>
+      </h1>
+
+      {/* Features List */}
+      <div class="space-y-4 mb-8 text-left">
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">📅</span>
+          <div>
+            <a
+              href="#feature-0"
+              class="font-semibold underline decoration-2 decoration-primary hover:decoration-primary/50"
+              >Sign in to your Google or Outlook account</a
+            >
+            <span class="text-gray-600">
+              → SynCal will <a href="#how-to-use" class="underline decoration-2 decoration-primary hover:decoration-primary/50"
+                >sync your calendars automatically</a
+              >  </span
+            >
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">📄</span>
+          <div>
+            <span class="font-semibold"
+              >Sync events  <a href="#feature-1" class="underline decoration-2 decoration-primary hover:decoration-primary/50"
+                >from your personal calendar to your work calendar</a
+              > in seconds</span
+            >
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">📊</span>
+          <div>
+            <span class="font-semibold"
+              > <a href="#feature-2" class="underline decoration-2 decoration-primary hover:decoration-primary/50"
+                >Never miss a meeting</a
+              > again</span
+            >
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <span class="text-2xl">⚡</span>
+          <div>
+            <span class="text-gray-600 font-semibold"
+              > <a
+                href="#feature-3"
+                class="underline decoration-2 decoration-primary hover:decoration-primary/50">Customize your sync tasks</a
+              > to fit your needs</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Right Column - Signup Form */}
+    <div class="flex-1 max-w-md">
+      <CTA client:load />
+    </div>
+  </div>
+</div>
