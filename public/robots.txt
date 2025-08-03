@@ -1,8 +1,8 @@
-# robots.txt for https://autoipc.es
+# robots.txt for https://syncal.app
 
 User-agent: *
 Disallow: /cdn-cgi/
 Allow: /
 
 # Sitemaps
-Sitemap: https://autoipc.es/sitemap-index.xml 
+Sitemap: https://syncal.app/sitemap-index.xml 

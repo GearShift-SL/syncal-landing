@@ -1,12 +1,12 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite';
-import sitemap from '@astrojs/sitemap';
-import icon from 'astro-icon';
+import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
+import sitemap from "@astrojs/sitemap";
+import icon from "astro-icon";
 
-import mdx from '@astrojs/mdx';
+import mdx from "@astrojs/mdx";
 
-import react from '@astrojs/react';
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,14 +14,14 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  site: 'https://autoipc.es',
+  site: "https://syncal.app",
   integrations: [
     icon(),
     sitemap({
-      filter: (page) => page !== 'https://autoipc.es/stripe-callback/',
+      filter: (page) => page !== "https://syncal.app/stripe-callback/",
     }),
     mdx(),
     react(),
   ],
-  trailingSlash: 'always',
+  trailingSlash: "always",
 });

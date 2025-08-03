@@ -112,8 +112,8 @@ export const NAVIGATION = (): NavigationConfig => ({
         icon: "tabler:brand-x",
         href: "https://x.com/syncalapp",
       },
-      // { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://instagram.com/autoipc' },
-      // { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://facebook.com/autoipc' },
+      // { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://instagram.com/syncalapp' },
+      // { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://facebook.com/syncalapp' },
       { ariaLabel: "RSS", icon: "tabler:rss", href: `/rss.xml` },
     ],
     footNote: `
