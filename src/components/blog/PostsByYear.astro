@@ -1,6 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
 import type { CollectionEntry } from 'astro:content';
+import importImage from '~/utils/importImage';
+import { Image } from 'astro:assets';
 
 interface Props {
   posts: CollectionEntry<'blog'>[];
@@ -27,7 +29,7 @@ const sortedPosts = filteredPosts.sort((a, b) => b.data.pubDatetime.valueOf() - 
 
 // Format date function
 const formatDate = (date: Date) => {
-  return date.toLocaleDateString('es-ES', {
+  return date.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -47,6 +49,14 @@ const getH1Title = () => {
 };
 
 const h1Title = getH1Title();
+
+// Get the images for the post in order and add them to a list so we can use them in the component
+const images = await Promise.all(sortedPosts.map(async (post) => {
+  if (post.data.ogImage) {
+    return await importImage(post.data.ogImage);
+  }
+  return null;
+}));
 ---
 
 <div class="space-y-8">
@@ -57,18 +67,19 @@ const h1Title = getH1Title();
 
   <ul class="space-y-4">
     {
-      sortedPosts.map((post) => (
+      sortedPosts.map((post, index) => (
         <li class="group hover:bg-gray-50 rounded-lg transition-colors">
           <article class="p-4">
             <a href={`/blog/${post.id.split('/').pop()}/`} class="block">
               <div class="flex gap-4 items-start">
-                {post.data.ogImage && (
+                {images[index] && (
                   <div class="flex-shrink-0">
-                    <img 
-                      src={post.data.ogImage} 
-                      alt={post.data.title}
+                    <Image
+                      src={images[index]}
+                      alt={`Cover image for ${post.data.title}`}
                       class="w-24 h-24 object-cover rounded-lg"
                     />
+
                   </div>
                 )}
                 <div class="flex-1 min-w-0">
