@@ -39,12 +39,12 @@ const formatDate = (date: Date) => {
 // Function to get the HTML for the h1 title
 const getH1Title = () => {
   if (category) {
-    return `<span class="font-bold">Artículos en la categoría: <span class="bg-gray-100 rounded-md px-2 py-1 hover:bg-gray-200 transition-colors">${category}</span></span>`;
+    return `<span class="font-bold">Posts in the category: <span class="bg-gray-100 rounded-md px-2 py-1 hover:bg-gray-200 transition-colors">${category}</span></span>`;
   }
   if (tag) {
-    return `<span class="font-bold">Artículos con la etiqueta: <span class="bg-gray-100 rounded-md px-2 py-1 hover:bg-gray-200 transition-colors">${tag}</span></span>`;
+    return `<span class="font-bold">Posts with tag: <span class="bg-gray-100 rounded-md px-2 py-1 hover:bg-gray-200 transition-colors">${tag}</span></span>`;
   } else {
-    return `<span class="font-bold">Artículos</span>`;
+    return `<span class="font-bold">All Posts</span>`;
   }
 };
 
